@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import size from './config/consts';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const background = require("./images/background.jpg");
 const backgroundMobile = require("./images/backgroundMobile.jpg");
@@ -11,11 +11,15 @@ const magnifier = require("./images/magnifier.png");
 const windowMaxWidth = 800;
 
 function App() {
+  const navigate = useNavigate();
+
   const [search, setSearch] = useState('');
 
   function handleSearch() {
-    
-  }
+    if(search !== '') {
+        navigate(`/character/search/${search}`, { replace: true });
+    }
+}
 
   return (
     <Container> 
@@ -47,6 +51,9 @@ function App() {
       <Link to={'/characters'} style={{ textDecoration: 'none' }}>
         <ButtonCharacters
           type="button"
+          onClick={() => {
+            handleSearch();
+          }}
         >
           All Characters
         </ButtonCharacters>

@@ -2,6 +2,8 @@ import { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import size from "../../config/consts";
+import { useNavigate } from "react-router";
+
 
 const logo = require("../../images/logo.png");
 const magnifier = require("../../images/magnifier.png");
@@ -9,10 +11,15 @@ const magnifier = require("../../images/magnifier.png");
 const windowMaxWidth = 800;
 
 export default function NavBar(): JSX.Element {
+    const navigate = useNavigate();
+
     const [search, setSearch] = useState('');
 
     function handleSearch() {
-
+        if(search !== '') {
+            navigate(`/character/search/${search}`, { replace: true });
+            document.location.reload();
+        }
     }
 
     return(
@@ -47,10 +54,10 @@ export default function NavBar(): JSX.Element {
                             handleSearch();
                         }}
                     >
-                    <ButtonSearchImage
-                        src={magnifier} 
-                        alt="magnifier"
-                    />
+                        <ButtonSearchImage
+                            src={magnifier} 
+                            alt="magnifier"
+                        />
                     </ButtonSearch>
                 </ContainerSearch>
             </Container>

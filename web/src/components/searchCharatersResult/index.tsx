@@ -5,31 +5,40 @@ import styled from 'styled-components';
 import NavBar from '../navBar';
 import CharactersType from '../../config/types';
 
+import { useParams } from 'react-router-dom';
+
 import size from "../../config/consts";
 
 const windowMaxWidth = 800;
 
-export default function Characters(): JSX.Element {
+export default function SearchCharactersResult(): JSX.Element {
+    const params = useParams();
+
     const [data, setData] = useState([]);
     const [pageNumbers, setPageNumbers] = useState(0);
     const [next, setNext] = useState(2);
     const [prev, setPrev] = useState(0);
 
-    function getCharacters() {
-        api.get('/character')
-            .then((response) => {
+    function getCharactersByName() {
+        api.get("/character", {
+            params:{
+                name: params.s?.toLowerCase(),
+            }
+        })
+            .then(response => {
                 setData(response.data.results);
                 setPageNumbers(response.data.info.pages);
             })
             .catch(error => {
                 alert(error);
-            });
+            })
     }
 
     function getCharactersByPage(pageNumber: number, type: string) {
         api.get('/character', {
             params: {
                 page: pageNumber,
+                name: params.s
             }
         })
             .then((response) => {
@@ -49,13 +58,14 @@ export default function Characters(): JSX.Element {
     }
 
     useEffect(() => {
-        getCharacters();
+        getCharactersByName();
     }, []);
 
     return (
         <>
             <Container>
                 <NavBar />
+                <TextSearch>Searching by: "{params.s}"</TextSearch>
                 <ContainerPageButtons>
                     <PageButton
                         disabled={prev === 0 ? true : false}
@@ -127,6 +137,13 @@ const Container = styled.div`
     flex-direction: column;
     background-color: black;
     padding-bottom: 50px;
+`;
+
+const TextSearch = styled.h2`
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
 `;
 
 const ContainerPageButtons = styled.div`
