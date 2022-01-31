@@ -16,3 +16,8 @@ Design - User Interface: <a target="_blank" href="https://www.figma.com/file/CSq
 
 My LinkedIn: <a target="_blank" href="https://www.linkedin.com/in/alvaro-junior-831299183/"> Alvaro Junior | LinkedIn </a>
 <br />
+
+## Preview:
+<div>
+  <img src="https://user-images.githubusercontent.com/64383944/151773143-a11d12e4-810e-4940-8e68-507d3318a0c3.png" alt="Home Page of Web Version"/>
+</div>
