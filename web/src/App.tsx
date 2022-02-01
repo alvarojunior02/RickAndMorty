@@ -23,42 +23,43 @@ function App() {
 
   return (
     <Container> 
-      <Logo 
-        src={logo} 
-        alt="Logo Rick and Morty"
-      />
-      <ContainerSearch>
-        <SearchBar 
-          type="search"
-          placeholder='Search Character'
-          value={search}
-          onChange={event => {
-            setSearch(event.target.value);
-          }}
+      <ContainerCenter>
+        <Logo 
+          src={logo} 
+          alt="Logo Rick and Morty"
         />
-        <ButtonSearch
-          type="button"
-          onClick={() => {
-            handleSearch();
-          }}
-        >
-          <ButtonSearchImage
-            src={magnifier} 
-            alt="magnifier"
+        <ContainerSearch>
+          <SearchBar 
+            type="search"
+            placeholder='Search Character'
+            value={search}
+            onChange={event => {
+              setSearch(event.target.value);
+            }}
           />
-        </ButtonSearch>
-      </ContainerSearch>
-      <Link to={'/characters'} style={{ textDecoration: 'none' }}>
-        <ButtonCharacters
-          type="button"
-          onClick={() => {
-            handleSearch();
-          }}
-        >
-          All Characters
-        </ButtonCharacters>
-      </Link>
-        
+          <ButtonSearch
+            type="button"
+            onClick={() => {
+              handleSearch();
+            }}
+          >
+            <ButtonSearchImage
+              src={magnifier} 
+              alt="magnifier"
+            />
+          </ButtonSearch>
+        </ContainerSearch>
+        <Link to={'/characters'} style={{ textDecoration: 'none' }}>
+          <ButtonCharacters
+            type="button"
+            onClick={() => {
+              handleSearch();
+            }}
+          >
+            All Characters
+          </ButtonCharacters>
+        </Link>
+      </ContainerCenter>
       <Footer> 
         <FooterLink
           target="_blank"
@@ -76,7 +77,7 @@ function App() {
           target="_blank"
           href="https://rickandmortyapi.com/"
         >
-          The Rick and Morty API
+          API Docs
         </FooterLink>
       </Footer>
     </Container>
@@ -85,7 +86,7 @@ function App() {
 
 const Container = styled.div`
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
   background-image: url(${size[0] > windowMaxWidth ? background : backgroundMobile});
@@ -95,8 +96,19 @@ const Container = styled.div`
   height: 100vh;
 `;
 
+const ContainerCenter = styled.div`
+  background-color: black;
+  padding: 20px;
+  opacity: 0.8;
+  border: 2px solid white;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
+
 const Logo = styled.img`
-  margin-top: 50px;
   width: 300px;
   height: 100px;
 `;
@@ -165,7 +177,7 @@ const Footer = styled.div`
   position: absolute;
   bottom: 0;
   right: 0;
-  width: 40vw;
+  width: 100%;
   height: 40px;
 
   display: flex;
@@ -178,6 +190,7 @@ const FooterLink = styled.a`
   font-size: 18px;
   font-weight: bold;
   text-decoration: none;
+  text-align: center;
   color: white;
   cursor: pointer;
 

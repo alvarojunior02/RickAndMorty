@@ -19,6 +19,7 @@ ReactDOM.render(
       <Route path="/" element={<App />}/>
       <Route path="characters" element={<Characters />}/>
       <Route path="/character/search/:s" element={<SearchCharactersResult />} />
+      <Route path="/character/info/:id" element={<InfoCharacter />} />
     </Routes>
   </BrowserRouter>,
   document.getElementById('root')
