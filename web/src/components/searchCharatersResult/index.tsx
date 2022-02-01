@@ -8,6 +8,7 @@ import CharactersType from '../../config/types';
 import { useParams } from 'react-router-dom';
 
 import size from "../../config/consts";
+import Footer from '../footer';
 
 const windowMaxWidth = 800;
 
@@ -63,30 +64,9 @@ export default function SearchCharactersResult(): JSX.Element {
 
     return (
         <>
+            <NavBar />
             <Container>
-                <NavBar />
                 <TextSearch>Searching by: "{params.s}"</TextSearch>
-                <ContainerPageButtons>
-                    <PageButton
-                        disabled={prev === 0 ? true : false}
-                        type='button'
-                        onClick={() => {
-                            getCharactersByPage(prev, 'prev');
-                        }}
-                    >
-                        {"<<<"}
-                    </PageButton>
-                    <TextPage>Page: {next-1} / {pageNumbers}</TextPage>
-                    <PageButton
-                        disabled={next > pageNumbers ? true : false}
-                        type='button'
-                        onClick={() => {
-                            getCharactersByPage(next, 'next');
-                        }}
-                    >
-                        {">>>"}
-                    </PageButton>
-                </ContainerPageButtons>
                 <CharactersList>
                     {
                         data.map((item: CharactersType, index ) => {
@@ -124,6 +104,7 @@ export default function SearchCharactersResult(): JSX.Element {
                         {">>>"}
                     </PageButton>
                 </ContainerPageButtons>
+                <Footer />
             </Container>
         </>
     );
@@ -144,12 +125,13 @@ const TextSearch = styled.h2`
     font-size: 20px;
     font-weight: bold;
     text-align: center;
+    margin-top: 120px;
 `;
 
 const ContainerPageButtons = styled.div`
     max-width: 1080px;
     width: 100%;
-    margin-top: 30px;
+    margin: 30px 0;
     display: flex;
     justify-content: center;
     align-items: center;

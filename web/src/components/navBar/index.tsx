@@ -66,10 +66,11 @@ export default function NavBar(): JSX.Element {
 }
 
 const Container = styled.div`
-    max-width: 1080px;
+    max-width: 100%;
     width: 100%;
-    height: 70px;
+    height: 120px;
     background-color: black;
+    position: fixed;
 
     display: flex;
     justify-content: space-around;

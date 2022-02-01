@@ -1,23 +1,38 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import api from "../../services/api";
 import styled from 'styled-components';
 import NavBar from '../navBar';
 import CharactersType from '../../config/types';
 
 import size from "../../config/consts";
+import { Link } from 'react-router-dom';
+import Footer from '../footer';
 
 const windowMaxWidth = 800;
 
 export default function Characters(): JSX.Element {
+    const params = useParams();
+    const navigate = useNavigate();
+
     const [data, setData] = useState([]);
     const [pageNumbers, setPageNumbers] = useState(0);
-    const [next, setNext] = useState(2);
-    const [prev, setPrev] = useState(0);
+    const [prev, setPrev] = useState<any>();
+    const [page, setPage] = useState<any>();
+    const [next, setNext] = useState<any>();
 
     function getCharacters() {
-        api.get('/character')
+        api.get('/character', {
+            params: {
+                page: params?.page,
+            }
+        })
             .then((response) => {
+                const pageNumber = (parseInt(params?.page || '1'));
+                setPrev(pageNumber - 1);
+                setPage(pageNumber);
+                setNext(pageNumber + 1);
                 setData(response.data.results);
                 setPageNumbers(response.data.info.pages);
             })
@@ -26,7 +41,7 @@ export default function Characters(): JSX.Element {
             });
     }
 
-    function getCharactersByPage(pageNumber: number, type: string) {
+    /*function getCharactersByPage(pageNumber: number, type: string) {
         api.get('/character', {
             params: {
                 page: pageNumber,
@@ -36,8 +51,7 @@ export default function Characters(): JSX.Element {
                 setData(response.data.results);
                 setPageNumbers(response.data.info.pages);
                 if(type === 'next') {
-                    setNext(next + 1);
-                    setPrev(prev + 1);
+                    
                 } else {
                     setNext(next - 1);
                     setPrev(prev - 1);
@@ -46,51 +60,29 @@ export default function Characters(): JSX.Element {
             .catch(error => {
                 alert(error);
             });
-    }
+    }*/
 
     useEffect(() => {
         getCharacters();
-    }, []);
+    }, [params?.page]);
 
     return (
         <>
+            <NavBar />
             <Container>
-                <NavBar />
-                <ContainerPageButtons>
-                    <PageButton
-                        disabled={prev === 0 ? true : false}
-                        type='button'
-                        onClick={() => {
-                            getCharactersByPage(prev, 'prev');
-                        }}
-                    >
-                        {"<<<"}
-                    </PageButton>
-                    <TextPage>Page: {next-1} / {pageNumbers}</TextPage>
-                    <PageButton
-                        disabled={next > pageNumbers ? true : false}
-                        type='button'
-                        onClick={() => {
-                            getCharactersByPage(next, 'next');
-                        }}
-                    >
-                        {">>>"}
-                    </PageButton>
-                </ContainerPageButtons>
                 <CharactersList>
                     {
-                        data.map((item: CharactersType, index ) => {
-                            return (
-                                <CardCharacter key={index}>
-                                    <NameCharacter>{item.name}</NameCharacter>
+                        data.map((item: CharactersType, index ) => (
+                            <CardCharacter key={index}>
+                                <NameCharacter>{item.name}</NameCharacter>
+                                <Link to={`/character/info/${item.id}`}>
                                     <ClickCharacter>
                                         <ImageCharacter
-                                            src={item.image}
-                                        />
+                                            src={item.image} />
                                     </ClickCharacter>
-                                </CardCharacter>
-                            )
-                        })
+                                </Link>
+                            </CardCharacter>
+                        ))
                     }
                 </CharactersList>
                 <ContainerPageButtons>
@@ -98,22 +90,27 @@ export default function Characters(): JSX.Element {
                         disabled={prev === 0 ? true : false}
                         type='button'
                         onClick={() => {
-                            getCharactersByPage(prev, 'prev');
+                            navigate(`/characters/page/${prev}`);
+                            setNext(next - 1);
+                            setPrev(prev - 1);
                         }}
                     >
                         {"<<<"}
                     </PageButton>
-                    <TextPage>Page: {next-1} / {pageNumbers}</TextPage>
+                    <TextPage>Page: {page} / {pageNumbers}</TextPage>
                     <PageButton
                         disabled={next > pageNumbers ? true : false}
                         type='button'
                         onClick={() => {
-                            getCharactersByPage(next, 'next');
+                            navigate(`/characters/page/${next}`);
+                            setNext(next + 1);
+                            setPrev(prev + 1);
                         }}
                     >
                         {">>>"}
                     </PageButton>
                 </ContainerPageButtons>
+                <Footer />
             </Container>
         </>
     );
@@ -132,7 +129,7 @@ const Container = styled.div`
 const ContainerPageButtons = styled.div`
     max-width: 1080px;
     width: 100%;
-    margin-top: 30px;
+    margin: 30px 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -159,7 +156,7 @@ const PageButton = styled.button`
 `;
 
 const CharactersList = styled.div`
-    margin-top: 30px;
+    margin-top: 120px;
     max-width: 1080px;
     width: 100%;
     flex-wrap: wrap;
