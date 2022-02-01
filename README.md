@@ -19,5 +19,5 @@ My LinkedIn: <a target="_blank" href="https://www.linkedin.com/in/alvaro-junior-
 
 ## Preview:
 <div>
-  <img src="https://user-images.githubusercontent.com/64383944/151773143-a11d12e4-810e-4940-8e68-507d3318a0c3.png" alt="Home Page of Web Version"/>
+  <img src="https://user-images.githubusercontent.com/64383944/151905901-0107135f-e8d1-4451-92d9-b9cb11e55252.png" alt="Home Page of Web Version"/>
 </div>
