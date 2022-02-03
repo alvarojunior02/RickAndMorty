@@ -3,9 +3,9 @@
 A personal project, made with React, React Native, Typescript and some of the most used front-end libraries.
 <br />
 
-Status of Web version: In Development.
+Status of Web version: In tests.
 <br />
-Status of Mobile version: Just in my plans yet.
+Status of Mobile version: In Development.
 <br />
 
 Link of the Public API used: <a target="_blank" href="https://rickandmortyapi.com/">Rick and Morty API</a>
