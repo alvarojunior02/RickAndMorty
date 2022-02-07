@@ -41,27 +41,6 @@ export default function Characters(): JSX.Element {
             });
     }
 
-    /*function getCharactersByPage(pageNumber: number, type: string) {
-        api.get('/character', {
-            params: {
-                page: pageNumber,
-            }
-        })
-            .then((response) => {
-                setData(response.data.results);
-                setPageNumbers(response.data.info.pages);
-                if(type === 'next') {
-                    
-                } else {
-                    setNext(next - 1);
-                    setPrev(prev - 1);
-                }
-            })
-            .catch(error => {
-                alert(error);
-            });
-    }*/
-
     useEffect(() => {
         getCharacters();
     }, [params?.page]);

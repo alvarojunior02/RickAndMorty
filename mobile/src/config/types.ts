@@ -1,4 +1,6 @@
-type Character = {
+import { ImageSourcePropType } from "react-native";
+
+export type TypeCharacter = {
     id: number,
     name: string,
     status: string,
@@ -20,14 +22,12 @@ type Character = {
 
 };
 
-type CharactersState = {
-    characters: Character[];
-}
-
-
-type CharacterAction = {
-    type: string,
-    payload: CharactersState,
-}
-
-type DispatchType = (args: CharacterAction) => CharacterAction;
+export type TypeEpisode = {
+    id: number,
+    name: string,
+    air_date: string,
+    episode: string,
+    characters: Array<string>,
+    url: string,
+    created: string,
+};

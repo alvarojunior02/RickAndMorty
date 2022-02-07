@@ -1,7 +1,7 @@
 export type RootStackParamList = {
     Splash: undefined;
     Home: undefined;
-    SearchResult: undefined;
+    SearchResult: { search: string } | undefined;
     Characters: undefined;
-    InfoCharacter: undefined;
+    InfoCharacter: { id: number };
 }

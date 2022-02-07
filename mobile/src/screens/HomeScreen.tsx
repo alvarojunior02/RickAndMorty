@@ -1,22 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/native';
 
-import { useAppDispatch } from '../hooks';
+import {useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {RootStackParamList} from './RootStackParams';
+import { StyleSheet, View } from 'react-native';
 
+type toScreenSearchResultProp = StackNavigationProp<RootStackParamList, 'SearchResult'>;
+type toCharactersProp = StackNavigationProp<RootStackParamList, 'Characters'>;
 
 const HomeScreen = () => {
 
-    const dispatch = useAppDispatch();
-
     const [search, setSearch] = useState('');
 
-    //useEffect(() => {
-    //    dispatch(getCharactersByPage(1));
-    //}, [dispatch])
+    const toSarchResult = useNavigation<toScreenSearchResultProp>();
+    const toCharacters = useNavigation<toCharactersProp>();
 
+    const navigateToSearch = () => {
+        toSarchResult.navigate('SearchResult', {
+            search,
+        });
+    }
+
+    const navigateToCharacters = () => {
+        toCharacters.navigate('Characters');
+    }
 
     return (
-        <Container>
+        <View style={styles.container}>
             <Logo source={require('../images/logo.png')}/>
             <SubContainer>
                 <SearchBar 
@@ -26,16 +37,28 @@ const HomeScreen = () => {
                         setSearch(value);
                     }}
                 />
-                <SearchButton>
+                <SearchButton onPress={() => {
+                    navigateToSearch();
+                    setSearch('');
+                }}>
                     <SearchButtonImage  source={require('../images/magnifier.png')}/>
                 </SearchButton>
-                <ButtonCharacters>
+                <ButtonCharacters onPress={navigateToCharacters}>
                     <TextButtonCharacters>All Characters</TextButtonCharacters>
                 </ButtonCharacters>
             </SubContainer>
-        </Container>
+        </View>
     );
 };
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'black',
+    },
+});
 
 const Container = styled.View`
     flex: 1;

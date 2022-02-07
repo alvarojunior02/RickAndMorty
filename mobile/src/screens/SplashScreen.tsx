@@ -1,30 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { Image, ImageBackground, StyleSheet, Text, View } from 'react-native';
+import styled from 'styled-components/native';
+
+import LoaderSpinner from '../components/loaderSpinner';
 
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from './RootStackParams';
 
-import styled from 'styled-components/native';
-
-import LoaderSpinner from '../components/loaderSpinner';
-
-import { useAppDispatch } from '../hooks';
-
 type SplashScreenProp = StackNavigationProp<RootStackParamList, 'Home'>;
-
 
 const SplashScreen = () => {
     const navigation = useNavigation<SplashScreenProp>();
-
-    const [pathImage, setPathImage] = useState('../images/backgroundMobile.jpg');
-
-    const [number, setNumber] = useState(1);
-    const [nextNumber, setNexNumber] = useState(2);
-
-    useEffect(() => {
-
-    }, [number])
 
     setTimeout(() => {
         navigation.navigate('Home');
@@ -64,9 +51,5 @@ const styles = StyleSheet.create({
         textAlign: "center"
     }
 });
-
-const ContainerClick = styled.TouchableOpacity`
-    flex: 1;
-`;
 
 export default SplashScreen;

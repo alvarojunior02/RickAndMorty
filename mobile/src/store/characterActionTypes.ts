@@ -1,2 +1,0 @@
-export const GET_CHARACTERS = "GET_CHARACTERS";
-export const MORE_CHARACTERS = "MORE_CHARACTERS";

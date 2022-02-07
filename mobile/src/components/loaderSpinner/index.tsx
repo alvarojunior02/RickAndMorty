@@ -10,12 +10,9 @@ const LoaderSpinner = () => {
         </Container>
     );
 }
-
-
 const Container = styled.TouchableOpacity`
     flex: 1;
     margin-top: 50px;
 `;
-
 
 export default LoaderSpinner;
