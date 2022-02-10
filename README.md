@@ -14,7 +14,7 @@ Link of the Public API used: <a target="_blank" href="https://rickandmortyapi.co
 Design - User Interface: <a target="_blank" href="https://www.figma.com/file/CSqSSgxoYKrHNY2o9yfnej/RM-Wiki---UI%2FUX?node-id=0%3A1"> Figma </a>
 <br />
 
-Site para testar: <a target="_blank" href="https://rickandmortyweb.vercel.app/"> Web Version </a>
+Site: <a target="_blank" href="https://rickandmortyweb.vercel.app/"> Web Version </a>
 <br />
 
 My LinkedIn: <a target="_blank" href="https://www.linkedin.com/in/alvaro-junior-831299183/"> Alvaro Junior | LinkedIn </a>
