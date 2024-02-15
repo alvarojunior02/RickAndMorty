@@ -3,18 +3,10 @@
 A personal project, made with React, React Native, Typescript and some of the most used front-end libraries.
 <br />
 
-Status of Web version: In tests.
-<br />
-Status of Mobile version: In Development.
-<br />
-
 Link of the Public API used: <a target="_blank" href="https://rickandmortyapi.com/">Rick and Morty API</a>
 <br />
 
 Design - User Interface: <a target="_blank" href="https://www.figma.com/file/CSqSSgxoYKrHNY2o9yfnej/RM-Wiki---UI%2FUX?node-id=0%3A1"> Figma </a>
-<br />
-
-Site: <a target="_blank" href="https://rickandmortyweb.vercel.app/"> Web Version </a>
 <br />
 
 My LinkedIn: <a target="_blank" href="https://www.linkedin.com/in/alvaro-junior-831299183/"> Alvaro Junior | LinkedIn </a>
